@@ -15,6 +15,13 @@ after_success:
   - docker build -t pkhot/multi-nginx ./ngnix
   - docker build -t pkhot/multi-server ./server
   - docker build -t pkhot/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push pkhot/multi-client
+  - docker push pkhot/multi-nginx
+  - docker push pkhot/multi-server
+  - docker push pkhot/multi-worker
 
 
 
